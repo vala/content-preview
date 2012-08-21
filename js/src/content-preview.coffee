@@ -1,10 +1,13 @@
 class ContentPreview
-  constructor: (@state = null) ->
+  constructor: () ->
+    @state = null
 
   process: (str, callback) ->
     url = @parseStr(str)
-    # Only request informations if
-    unless !url || url == state
+    # Only request informations if we found an url
+    unless !url || url == @state
+      # Keep state for future preview requests
+      @state = url
       requestPreview(url, callback)
 
   # Perse
@@ -20,11 +23,6 @@ class ContentPreview
   # Response handling
   processResponse: (resp, callback) ->
     callback(resp) if resp
-
-# Singleton method for simpler use
-ContentPreview.parse = (str, cb, state = null) ->
-  preview = new ContentPreview(state)
-  preview.process str, cb
 
 # Server url config
 ContentPreview.url = ""

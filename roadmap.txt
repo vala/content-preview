@@ -14,7 +14,7 @@ V.0.1 :
       a. Les balise meta OpenGraph (og:xxx)
       b. <title>, <meta description>
       c. Les images contenues dans la page
-    4. Le parser renvoie soit une réponse vide si rien n'est trouvé, ou erreur 404 (autres cas à étudier) et sinon un hash de type :
+    4. Le parser renvoie soit une réponse vide si rien n'est trouvé et sinon un hash de type :
       {
         title: "Super video",
         description: "Excellent one, gotta love it",
@@ -86,5 +86,5 @@ V.1 :
 Idées supplémentaires :
 
   - Mise en place d'un cache (probablement avec Redis) permettant de stocker le hash de réponse et de ne pas rechecker une URL si celle-ci a déjà été stockée. (Peut être avec un EXPIRE en fonction du cache ... à voir)
-
+  - Authentification au niveau du service
 
