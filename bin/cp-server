@@ -14,9 +14,11 @@ require 'rack/cors'
 class ContentPreviewServer < Thor
 
   desc "start", "Starts a Rack server with the Rack::Handler and Port given as argument Defaults are Webrick and"
+
   method_option :server, aliases: '-s', default: 'WEBrick', desc: "The Rack::Handler server to use (Webrick, Mongrel, Thin ...)"
   method_option :port, aliases: '-p', default: '3210', desc: "The port to run the server on"
   method_option :origin, aliases: '-o', default: '*', desc: "Allowed client origins"
+
   def start
     origin, port, server = options[:origin], options[:port], options[:server]
 
