@@ -25,4 +25,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'rack-cors'
   s.add_dependency 'rack-test'
   s.add_dependency 'json'
+  s.add_dependency 'content-preview'
 end

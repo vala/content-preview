@@ -34,8 +34,6 @@ class ContentPreviewServer < Thor
        end
       end
 
-      puts "Launch handler #{ server } on port #{ port }"
-
       run ContentPreview::Router::Base
     end
 
