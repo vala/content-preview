@@ -1,0 +1,1 @@
+web: cp-server start -p $PORT
