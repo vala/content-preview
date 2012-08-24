@@ -1,1 +1,1 @@
-web: ruby bin/cp-server start -p $PORT -s Thin
+web: bundle exec cp-server start -p $PORT -s Thin
