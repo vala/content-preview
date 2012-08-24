@@ -1,1 +1,1 @@
-web: cp-server start -p $PORT
+web: bin/cp-server start -p $PORT
