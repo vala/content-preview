@@ -35,8 +35,8 @@ class ContentPreviewServer < Thor
       end
 
       puts "Launch handler #{ server } on port #{ port }"
-      run ContentPreview::Router::Base
 
+      run ContentPreview::Router::Base
     end
 
     Rack::Handler.const_get(server).run(app, Host: '0.0.0.0', Port: port)
