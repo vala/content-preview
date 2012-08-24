@@ -20,6 +20,12 @@ module ContentPreview
         class_name = @routes[path].capitalize
         Handlers.const_get(class_name).call env
       end
+
+      class << self
+        def call *args
+          new.call *args
+        end
+      end
     end
   end
 end

@@ -4,36 +4,42 @@ require 'thor'
 require 'json'
 require 'rack'
 require 'yaml'
-require 'rack/cors'
 
 require 'content-preview/router'
 require 'content-preview'
 
+require 'rack'
+require 'rack/cors'
 
 class ContentPreviewServer < Thor
-  desc "start", <<-DESC
-    Starts a Rack server with the Rack::Handler and Port given as argument
-    Defaults are Webrick and
-  DESC
-  method_options :server, aliases: '-s', default: 'webrick', desc: "The Rack::Handler server to use (webrick, mongrel, thin ...)"
-  method_options :port, aliases: '-p', default: '8180', desc: "The port to run the server on"
-  method_options :origin, aliases: '-o', default: '*', desc: "Allowed client origins"
-  def start
-    use ::Rack::CommonLogger
-    use ::Rack::ShowExceptions
-    use ::Rack::Lint
 
-    use Rack::Cors do
-     allow do
-      origins '*'
-      resource %r{/},
-        :headers => ['Origin', 'Accept', 'Content-Type'],
-        :methods => [:get, :post]
-     end
+  desc "start", "Starts a Rack server with the Rack::Handler and Port given as argument Defaults are Webrick and"
+  method_option :server, aliases: '-s', default: 'WEBrick', desc: "The Rack::Handler server to use (Webrick, Mongrel, Thin ...)"
+  method_option :port, aliases: '-p', default: '3210', desc: "The port to run the server on"
+  method_option :origin, aliases: '-o', default: '*', desc: "Allowed client origins"
+  def start
+    origin, port, server = options[:origin], options[:port], options[:server]
+
+    app = Rack::Builder.new do
+      use Rack::CommonLogger
+      use Rack::ShowExceptions
+      use Rack::Lint
+
+      use Rack::Cors do
+       allow do
+        origins origin
+        resource %r{/},
+          :headers => ['Origin', 'Accept', 'Content-Type'],
+          :methods => [:get, :post]
+       end
+      end
+
+      puts "Launch handler #{ server } on port #{ port }"
+      run ContentPreview::Router::Base
+
     end
 
-    Rack::Handler.const_get(handler).run(ContentPreview::Router::Base, port: port)
-
+    Rack::Handler.const_get(server).run(app, Host: '0.0.0.0', Port: port)
   end
 end
 
