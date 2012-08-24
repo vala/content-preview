@@ -14,7 +14,14 @@ Gem::Specification.new do |s|
   s.description = "A simple service for getting URL page informations"
 
   s.files       = `git ls-files`.split("\n")
-  s.add_dependency 'nokogiri'
   s.require_paths = ["lib"]
   s.test_files    = `git ls-files -- {spec}/*`.split("\n")
+  s.bindir        = "bin"
+  s.executables   = 'cp-server'
+
+  s.add_dependency 'nokogiri'
+  s.add_dependency 'rake'
+  s.add_dependency 'rack-cors'
+  s.add_dependency 'rack-test'
+  s.add_dependency 'json'
 end
