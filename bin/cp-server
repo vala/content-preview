@@ -1,4 +1,40 @@
 #!/usr/bin/env ruby
 
-require 'content-preview/server'
-app = ContentPreview::Server.start
+require 'thor'
+require 'json'
+require 'rack'
+require 'yaml'
+require 'rack/cors'
+
+require 'content-preview/router'
+require 'content-preview'
+
+
+class ContentPreviewServer < Thor
+  desc "start", <<-DESC
+    Starts a Rack server with the Rack::Handler and Port given as argument
+    Defaults are Webrick and
+  DESC
+  method_options :server, aliases: '-s', default: 'webrick', desc: "The Rack::Handler server to use (webrick, mongrel, thin ...)"
+  method_options :port, aliases: '-p', default: '8180', desc: "The port to run the server on"
+  method_options :origin, aliases: '-o', default: '*', desc: "Allowed client origins"
+  def start
+    use ::Rack::CommonLogger
+    use ::Rack::ShowExceptions
+    use ::Rack::Lint
+
+    use Rack::Cors do
+     allow do
+      origins '*'
+      resource %r{/},
+        :headers => ['Origin', 'Accept', 'Content-Type'],
+        :methods => [:get, :post]
+     end
+    end
+
+    Rack::Handler.const_get(handler).run(ContentPreview::Router::Base, port: port)
+
+  end
+end
+
+ContentPreviewServer.start

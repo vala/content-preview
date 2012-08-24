@@ -3,11 +3,11 @@ require 'rack'
 require 'yaml'
 require 'rack/cors'
 
-require 'content-preview/server'
-# require 'content-preview/server'
+require 'content-preview/router'
+require 'content-preview'
 
 use ::Rack::CommonLogger
-use ::Rack::ShowExceptions
+# use ::Rack::ShowExceptions
 use ::Rack::Lint
 #use Rack::Static, :urls => ["/static"]
 

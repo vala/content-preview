@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
   s.bindir        = "bin"
   s.executables   = 'cp-server'
 
+  s.add_dependency 'thor'
   s.add_dependency 'nokogiri'
   s.add_dependency 'rake'
   s.add_dependency 'rack-cors'

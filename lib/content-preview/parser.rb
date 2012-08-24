@@ -1,4 +1,5 @@
 require 'open-uri'
+require 'nokogiri'
 
 module ContentPreview
   class Parser
@@ -10,6 +11,7 @@ module ContentPreview
 
     def process(url)
       return unless url =~ /^http\:\/\//
+
       begin
         result = {}
         document = Nokogiri::HTML(open(url))
