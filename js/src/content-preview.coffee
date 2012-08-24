@@ -80,20 +80,20 @@ preview_select_image = (image) ->
   else
     $($.fn.parseContentPreview.defaultOptions.form_hidden_inputs_name).prepend "<input type='hidden' name='" + $.fn.parseContentPreview.defaultOptions.form_content_name + "[content_image]' value='" + image + "'/>"
 
-#the tree lines above should run on page load
-$("img[id='image_remote_preview_']").click (e) ->
-  preview_select_image $(e.currentTarget).attr('src')
-  return
+$ ->
+  $("img[id='image_remote_preview_']").click (e) ->
+    preview_select_image $(e.currentTarget).attr('src')
+    return
 
-$("#form-actions-cross").click (e) ->
-  $($.fn.parseContentPreview.defaultOptions.preview_title).text("")
-  $($.fn.parseContentPreview.defaultOptions.preview_description).text("")
-  $($.fn.parseContentPreview.defaultOptions.preview_image).empty()
-  $(".images").empty()
-  $($.fn.parseContentPreview.defaultOptions.form_hidden_inputs_name).empty()
+  $("#form-actions-cross").click (e) ->
+    $($.fn.parseContentPreview.defaultOptions.preview_title).text("")
+    $($.fn.parseContentPreview.defaultOptions.preview_description).text("")
+    $($.fn.parseContentPreview.defaultOptions.preview_image).empty()
+    $(".images").empty()
+    $($.fn.parseContentPreview.defaultOptions.form_hidden_inputs_name).empty()
 
-  $("#form-actions-cross").hide()
-  return
+    $("#form-actions-cross").hide()
+    return
 
 # Expose
 window.ContentPreview = ContentPreview

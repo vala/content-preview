@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
 
-require 'content-preview'
-ContentPreview::Server.start
+require 'content-preview/server'
+app = ContentPreview::Server.start
