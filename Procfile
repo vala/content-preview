@@ -1,1 +1,1 @@
-web: bin/cp-server start -p $PORT
+web: ruby bin/cp-server start -p $PORT
