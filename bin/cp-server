@@ -2,7 +2,6 @@
 
 require 'thor'
 require 'json'
-require 'rack'
 require 'yaml'
 
 require 'content-preview/router'
