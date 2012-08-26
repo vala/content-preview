@@ -1,14 +1,10 @@
 #!/usr/bin/env ruby
 
 require 'thor'
-require 'json'
-require 'yaml'
-
-require 'content-preview/router'
-require 'content-preview'
-
 require 'rack'
 require 'rack/cors'
+
+require 'content-preview/router'
 
 class ContentPreviewServer < Thor
 
@@ -21,8 +17,8 @@ class ContentPreviewServer < Thor
 
     app = Rack::Builder.new do
       use Rack::CommonLogger
-      use Rack::ShowExceptions
-      use Rack::Lint
+      # use Rack::ShowExceptions
+      # use Rack::Lint
 
       use Rack::Cors do
        allow do

@@ -1,3 +1,7 @@
+require 'yaml'
+require 'json'
+
+require 'content-preview'
 require 'content-preview/router/handlers/default'
 
 module ContentPreview
