@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    content-preview (0.0.1)
+    content-preview (0.1rc)
       content-preview
       json
       nokogiri
