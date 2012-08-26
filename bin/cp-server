@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 
-require 'thor'
-require 'rack'
-require 'rack/cors'
-require 'content-preview/router'
+# require 'thor'
+# require 'rack'
+# require 'rack/cors'
+# require 'content-preview/router'
 
 # i = 0
 
