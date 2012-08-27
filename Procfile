@@ -1,1 +1,1 @@
-web: bundle exec cp-server start -p $PORT
+web: bundle exec nt-cp-server --start -p $PORT
