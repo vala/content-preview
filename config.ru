@@ -17,4 +17,4 @@ app = Rack::Builder.new do
   end
 
   run ContentPreview::Router::Base
-end
+end.to_app
