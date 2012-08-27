@@ -1,1 +1,1 @@
-web: bundle exec nt-cp-server --start -p $PORT
+web: bundle exec rackup config.ru -p $PORT
