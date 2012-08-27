@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   # s.test_files    = `git ls-files -- {spec}/*`.split("\n")
   s.bindir        = "bin"
-  s.executables   = ['cp-server', 'nt-cp-server']
+  s.executables   = ['cp-server']
 
   s.add_dependency 'thor'
   s.add_dependency 'nokogiri'

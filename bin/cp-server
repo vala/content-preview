@@ -5,8 +5,6 @@ require 'rack'
 require 'rack/cors'
 require 'content-preview/router'
 
-i = 0
-
 class ContentPreviewServer < Thor
 
   desc "init", "Starts a Rack server with the Rack::Handler and Port given as argument Defaults are Webrick and"
@@ -16,14 +14,9 @@ class ContentPreviewServer < Thor
   method_option :origin, aliases: '-o', default: '*', desc: "Allowed client origins"
 
   def init
-
-    puts "Starting ContentPreviewServer for the #{ i += 1 } time..."
-
     origin, port, server = options[:origin], options[:port], options[:server]
     service = Rack::Builder.new do
       use Rack::CommonLogger
-      # use Rack::ShowExceptions
-      # use Rack::Lint
 
       use Rack::Cors do
        allow do

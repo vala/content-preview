@@ -1,3 +1,3 @@
 module ContentPreview
-  VERSION = "0.1rc2"
+  VERSION = "0.1"
 end

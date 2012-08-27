@@ -4,8 +4,6 @@ require 'content-preview/router'
 
 
 use Rack::CommonLogger
-# use Rack::ShowExceptions
-# use Rack::Lint
 
 use Rack::Cors do
  allow do

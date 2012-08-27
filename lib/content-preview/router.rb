@@ -19,8 +19,6 @@ module ContentPreview
           path = '/' if path.empty?
         end
 
-        # require File.dirname(__FILE__) + '/' + @routes[path]
-
         class_name = @routes[path].capitalize
         Handlers.const_get(class_name).call env
       end
