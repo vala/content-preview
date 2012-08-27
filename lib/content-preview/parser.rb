@@ -3,7 +3,7 @@ require 'nokogiri'
 
 module ContentPreview
   class Parser
-    attr_accessor :title, :description, :images
+    attr_accessor :title, :description, :images, :video
 
     def initialize(images = [])
       self.images = images
@@ -13,16 +13,17 @@ module ContentPreview
       return unless url =~ /^http\:\/\//
 
       begin
-        result = {}
         document = Nokogiri::HTML(open(url))
         process_open_graph(document)
         process_meta_data(document, url)
 
-        result['title'] = self.title
-        result['description'] = self.description
-        result['images'] = self.images
-
-        return result
+        # Return computed data
+        {
+          'title' => self.title,
+          'description' => self.description,
+          'images' => self.images,
+          'video' => self.video
+        }
       rescue Exception => e
         nil
       end
@@ -40,6 +41,10 @@ module ContentPreview
 
           when 'og:image'
             self.images << tag['content']
+
+          when 'og:video'
+            self.video = tag['content']
+
           end
         end
       end

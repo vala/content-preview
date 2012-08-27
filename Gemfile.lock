@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    content-preview (0.1rc2)
+    content-preview (0.1)
       json
       nokogiri
       rack-cors

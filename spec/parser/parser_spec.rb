@@ -56,10 +56,17 @@ describe ContentPreview::Parser, '::process' do
     preview = @content_preview.process "http://www.youtube.com/watch?v=OK7pfLlsUQM"
     preview.should_not be_nil
     preview.should include(
-      {"title"=>"The Artist - Official Trailer [HD]", "description"=>"Subscribe http://ow.ly/3UVvY | Facebook http://ow.ly/3UVxn | Twitter http://ow.ly/3UVyA Release Date: 23 November 2011 Genre: Romance | Comedy | Drama Cast: ...", "images"=>["http://i4.ytimg.com/vi/OK7pfLlsUQM/mqdefault.jpg"]}
+      {
+        "title"=>"The Artist - Official Trailer [HD]",
+        "description"=>"Subscribe http://ow.ly/3UVvY | Facebook http://ow.ly/3UVxn | Twitter http://ow.ly/3UVyA Release Date: 23 November 2011 Genre: Romance | Comedy | Drama Cast: ...",
+        "images"=>["http://i4.ytimg.com/vi/OK7pfLlsUQM/mqdefault.jpg"],
+        "video" => "http://www.youtube.com/v/OK7pfLlsUQM?version=3&autohide=1"
+      }
     )
 
     @content_preview.title.should_not be_nil
     @content_preview.images.should_not be_empty
+    @content_preview.video.should_not be_nil
   end
+
 end
